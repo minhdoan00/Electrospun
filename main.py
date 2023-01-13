@@ -41,13 +41,19 @@ plt.hist(crop.ravel(), 256, [0, 256])
 
 
 # Display results
-cv.imshow('Source image', src)
-cv.imshow('Equalized Image', dst)
-cv.imshow('Crop Image', crop)
-print(hist)
-plt.title('Histogram for gray scale picture')
-plt.show()
+# cv.imshow('Source image', src)
+# cv.imshow('Equalized Image', dst)
+# cv.imshow('Crop Image', crop)
+#
+# plt.title('Histogram for gray scale picture')
+# plt.show()
 
+print(hist)
+
+sum_black = 0
+for i in range(256):
+    sum_black += hist[0][i]
+print(sum_black)
 # Wait until user exits the program
 cv.waitKey()
 
