@@ -24,6 +24,7 @@ dst = cv.equalizeHist(src)
 # Get dimensions of image
 dimensions = src.shape
 
+
 # height, width, number of channels in image
 height = src.shape[0]
 width = src.shape[1]
