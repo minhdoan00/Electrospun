@@ -17,6 +17,7 @@ if src is None:
 # Convert to grayscale
 src = cv.cvtColor(src, cv.COLOR_BGR2GRAY)
 
+
 # Apply Histogram Equalization
 dst = cv.equalizeHist(src)
 
