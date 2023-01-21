@@ -6,7 +6,7 @@ from matplotlib import pyplot as plt
 
 # Load image
 parser = argparse.ArgumentParser(description='Code for Histogram Equalization tutorial.')
-parser.add_argument('--input', help='Path to input image.', default='image/PVAZnO_q003.tif')
+parser.add_argument('--input', help='Path to input image.', default='image/Si-PVA_q008.tif')
 args = parser.parse_args()
 
 src = cv.imread(cv.samples.findFile(args.input))
@@ -78,8 +78,8 @@ showInMovedWindow('Crop Image', r_crop, 800, 205)
 showInMovedWindow('Crop Replace Elements Image', rc_crop, 1200, 205)
 
 
-# plt.title('Histogram for gray scale picture')
-# plt.show()
+plt.title('Histogram for gray scale picture')
+plt.show()
 
 # print(type(crop))
 print(white)
