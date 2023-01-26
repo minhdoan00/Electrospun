@@ -10,14 +10,13 @@ gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 # Use canny edge detection
 edges = cv2.Canny(gray, 50, 150, apertureSize=3)
 
-# Apply HoughLinesP method to
-# to directly obtain line end points
+# Apply HoughLinesP method to directly obtain line end points
 lines_list = []
 lines = cv2.HoughLinesP(
     edges,  # Input edge image
     1,  # Distance resolution in pixels
     np.pi / 180,  # Angle resolution in radians
-    threshold=100,  # Min number of votes for valid line
+    threshold=60,  # Min number of votes for valid line
     minLineLength=5,  # Min allowed length of line
     maxLineGap=10  # Max allowed gap between line for joining them
 )
@@ -34,3 +33,14 @@ for points in lines:
 
 # Save the result image
 cv2.imwrite('detectedLines.png', image)
+
+img_canny = cv2.Canny(gray, 50, 50)
+img_dilate = cv2.dilate(img_canny, None, iterations=1)
+img_erode = cv2.erode(img_dilate, None, iterations=1)
+
+mask = np.full(gray.shape, 255, "uint8")
+contours, hierarchies = cv2.findContours(img_erode, cv2.RETR_TREE, cv2.CHAIN_APPROX_NONE)
+for cnt in contours:
+    cv2.drawContours(mask, [cnt], -1, 0, -1)
+
+cv2.imwrite('result_draw.png', mask)
